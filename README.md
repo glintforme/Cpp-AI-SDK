@@ -370,7 +370,3 @@ A: 启动时指定 `--port` 参数，或修改 `ChatServer.conf` 配置文件：
 ## License
 
 MIT License
-
-## License
-
-MIT License
