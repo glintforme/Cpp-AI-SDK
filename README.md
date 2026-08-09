@@ -141,6 +141,8 @@ cd sdk
 mkdir -p build && cd build
 cmake .. -DCMAKE_BUILD_TYPE=Debug
 make -j$(nproc)
+//在以上几步之后，我建议使用代码安装-安装路径为/usr/local/lib
+sudo make install
 ```
 
 编译成功后会在 `sdk/build/` 下生成 `libai_chat_sdk.a`。
@@ -300,70 +302,7 @@ AI_SDK/
 └── test/                           # 测试代码
 ```
 
----
 
-## 技术亮点
-
-### 1. 多态架构的模型接入层
-
-基于 `LLMProvider` 抽象基类，通过多态统一接入 4 种异构大模型 API。新增模型仅需继承实现 `sendMessage`（同步）和 `sendMessageIncrement`（流式）两个虚函数，符合开闭原则。
-
-### 2. SSE 流式响应
-
-使用 httplib 的 `set_chunked_content_provider` 实现 SSE 流式传输，前端通过 `fetch + ReadableStream` 实时解析增量数据块，实现逐字显示效果。处理了多模型 SSE 协议差异（前缀长度、`reasoning_content` 与 `content` 分离、`[DONE]` 标记）。
-
-### 3. 长会话渲染性能优化
-
-针对长会话切换卡顿问题，使用 `DocumentFragment` 批量插入 DOM + `requestAnimationFrame` 异步分批增强代码块，将主线程阻塞优化为渐进式渲染。
-
-### 4. LaTeX 数学公式渲染
-
-集成 KaTeX，自动识别 Markdown 文本中的 `$...$`（内联）和 `$$...$$`（块级）LaTeX 公式并渲染，同时排除代码块内的 `$` 符号避免误解析。
-
-### 5. 代理检测与友好提示
-
-Gemini 模型在国内需代理访问。系统自动检测代理可用性，在模型选择界面显示代理状态标签，发送消息时前后端双重校验，代理不可用时返回友好提示。
-
----
-
-## 常见问题
-
-### Q: 启动后提示找不到 `libai_chat_sdk.a`？
-
-A: 需要先编译 SDK，再编译 ChatServer：
-
-```bash
-cd sdk && mkdir -p build && cd build && cmake .. && make -j$(nproc)
-cd ../../ChatServer && mkdir -p build && cd build && cmake .. && make -j$(nproc)
-```
-
-### Q: Gemini 模型无响应？
-
-A: Gemini API 在国内需要代理访问。请确保已开启代理，系统会自动检测并在界面提示代理状态。
-
-### Q: Ollama 本地模型无法使用？
-
-A: 请确认 Ollama 服务已启动（`ollama serve`）且已拉取对应模型（`ollama pull deepseek-r1:1.5b`）。可通过 `--ollama_endpoint` 参数指定 Ollama 地址。
-
-### Q: API 密钥如何配置？
-
-A: 通过环境变量设置，变量名区分大小写：
-
-```bash
-export deepseek_apikey="sk-xxx"    # DeepSeek
-export KIMI3_apikey="sk-xxx"       # Kimi
-export gemini_apikey="xxx"         # Gemini
-```
-
-### Q: 如何修改监听端口？
-
-A: 启动时指定 `--port` 参数，或修改 `ChatServer.conf` 配置文件：
-
-```bash
-./AIChatServer --port=9090
-```
-
----
 
 ## License
 
