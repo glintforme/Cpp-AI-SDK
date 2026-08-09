@@ -91,20 +91,17 @@
 ```bash
 sudo apt update
 sudo apt install -y build-essential cmake libjsoncpp-dev libsqlite3-dev \
-    libssl-dev libgflags-dev libspdlog-dev libfmt-dev
+    libssl-dev libgflags-dev libspdlog-dev libfmt-dev pkg-config curl
 ```
 
 ### 安装 cpp-httplib
 
-cpp-httplib 是 header-only 库，需手动安装：
+cpp-httplib 是 header-only 库，但是我们只需要httplib.h这个头文件，需手动安装并移动httplib.h到 /usr/include/ 文件目录下：
 
 ```bash
 git clone https://github.com/yhirose/cpp-httplib.git
 cd cpp-httplib
-mkdir build && cd build
-cmake .. -DCMAKE_BUILD_TYPE=Debug
-make -j$(nproc)
-sudo make install
+sudo cp httplib.h /usr/include
 ```
 
 ### （可选）安装 Ollama 用于本地模型
@@ -129,9 +126,13 @@ ollama serve
 通过环境变量配置云端模型的 API Key：
 
 ```bash
+//访问bashrc文件
+vim ~/.bashrc
 export deepseek_apikey="sk-your-deepseek-key"
 export KIMI3_apikey="sk-your-kimi-key"
 export gemini_apikey="your-gemini-key"
+//更新bashrc
+source ~/.bashrc
 ```
 
 ### 2. 编译 SDK 静态库
