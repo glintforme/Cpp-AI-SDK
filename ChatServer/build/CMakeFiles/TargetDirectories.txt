@@ -1,0 +1,4 @@
+/home/cjs999/project/AI_SDK/ChatServer/build/CMakeFiles/AIChatServer.dir
+/home/cjs999/project/AI_SDK/ChatServer/build/CMakeFiles/copy_www.dir
+/home/cjs999/project/AI_SDK/ChatServer/build/CMakeFiles/edit_cache.dir
+/home/cjs999/project/AI_SDK/ChatServer/build/CMakeFiles/rebuild_cache.dir

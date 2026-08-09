@@ -1,0 +1,14 @@
+[
+{
+  "directory": "/home/cjs999/project/AI_SDK/ChatServer/build",
+  "command": "/usr/bin/c++ -DCPPHTTPLIB_OPENSSL_SUPPORT -I/home/cjs999/project/AI_SDK/ChatServer/../sdk/include -g -std=gnu++17 -o CMakeFiles/AIChatServer.dir/main.cpp.o -c /home/cjs999/project/AI_SDK/ChatServer/main.cpp",
+  "file": "/home/cjs999/project/AI_SDK/ChatServer/main.cpp",
+  "output": "CMakeFiles/AIChatServer.dir/main.cpp.o"
+},
+{
+  "directory": "/home/cjs999/project/AI_SDK/ChatServer/build",
+  "command": "/usr/bin/c++ -DCPPHTTPLIB_OPENSSL_SUPPORT -I/home/cjs999/project/AI_SDK/ChatServer/../sdk/include -g -std=gnu++17 -o CMakeFiles/AIChatServer.dir/ChatServer.cpp.o -c /home/cjs999/project/AI_SDK/ChatServer/ChatServer.cpp",
+  "file": "/home/cjs999/project/AI_SDK/ChatServer/ChatServer.cpp",
+  "output": "CMakeFiles/AIChatServer.dir/ChatServer.cpp.o"
+}
+]

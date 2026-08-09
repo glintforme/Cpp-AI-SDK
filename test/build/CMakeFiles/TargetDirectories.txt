@@ -1,0 +1,3 @@
+/home/cjs999/project/AI_SDK/test/build/CMakeFiles/testLLM.dir
+/home/cjs999/project/AI_SDK/test/build/CMakeFiles/edit_cache.dir
+/home/cjs999/project/AI_SDK/test/build/CMakeFiles/rebuild_cache.dir
