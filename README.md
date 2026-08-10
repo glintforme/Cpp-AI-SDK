@@ -35,7 +35,7 @@
 - **模型选择**：弹窗式模型选择，显示模型描述与代理状态
 - **Markdown 渲染**：集成 marked.js，支持表格、列表、引用等语法
 - **代码高亮**：集成 highlight.js，支持多种语言语法高亮 + 一键复制
-- **数学公式**：集成 KaTeX，支持 `$O(n)$` 内联公式和 `$$O(n^2)$$` 块级公式渲染
+- **数学公式**：集成 KaTeX，支持 `O(n)` 内联公式和 `O(n^2)` 块级公式渲染
 - **响应式布局**：适配桌面端与移动端
 
 ---
@@ -140,21 +140,23 @@ source ~/.bashrc
 ```bash
 cd sdk
 mkdir -p build && cd build
-cmake .. -DCMAKE_BUILD_TYPE=Debug
-make -j$(nproc)
-//在以上几步之后，我建议使用代码安装-安装路径为/usr/local/lib
+//在上一层文件夹运行cmake
+cmake ..
+//运行当前文件夹下的make文件
+make 
+//在以上几步之后，我建议使用代码安装
 sudo make install
 ```
 
-编译成功后会在 `sdk/build/` 下生成 `libai_chat_sdk.a`。
+编译成功后会在 `/usr/local/lib` 下生成 `libai_chat_sdk.a`。
 
 ### 3. 编译 ChatServer
 
 ```bash
 cd ChatServer
 mkdir -p build && cd build
-cmake .. -DCMAKE_BUILD_TYPE=Debug
-make -j$(nproc)
+cmake .. 
+make 
 ```
 
 编译成功后会在 `ChatServer/build/` 下生成可执行文件 `AIChatServer`，同时自动拷贝前端资源到 `build/www/`。
